@@ -1,0 +1,53 @@
+@import "mixins";
+@import "variables";
+
+@import "../css/vendor/normalize.css";
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.8;
+}
+a {
+  color: $secondary;
+  text-decoration: none;
+  &:active,
+  &:hover {
+    color: $secondaryLight;
+  }
+  &:link,
+  &:active,
+  &:hover,
+  &:visited {
+    outline: 0;
+  }
+}
+
+button,
+.button {
+  background: $secondary;
+  color: $white;
+  padding: 0.3em 0.6em;
+  outline: 0;
+  border: none;
+
+  &:hover {
+    color: $white;
+    background: $secondaryLight;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+  padding: 1em;
+  @include box-sizing();
+  @include clearfix();
+}
