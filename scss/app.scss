@@ -1,0 +1,197 @@
+@import "mixins";
+@import "variables";
+
+@import "../css/vendor/normalize.css";
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  background: #333;
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.8;
+}
+a {
+  color: $secondary;
+  text-decoration: none;
+  &:active,
+  &:hover {
+    color: $secondaryLight;
+  }
+  &:link,
+  &:active,
+  &:hover,
+  &:visited {
+    outline: 0;
+  }
+}
+
+button,
+.button {
+  background: $secondary;
+  color: $white;
+  padding: 0.3em 0.6em;
+  outline: 0;
+  border: none;
+  @include border-radius(12px);
+
+  &:hover {
+    color: $white;
+    background: $secondaryLight;
+  }
+}
+
+form {
+  font-size: 2em;
+
+  input, label {
+    display: block;
+  }
+
+  label {
+    margin: 0.8em 0 0.5em;
+  }
+
+  input, textarea {
+    width: 100%;
+  }
+
+  canvas {
+    width: 100%;
+    height: 120px;
+  }
+
+  button[type="submit"] {
+    font-size: 1.2em;
+    background: $green;
+    margin-top: 40px;
+    width: 540px;
+    margin-left: -30px;
+    @include border-radius(0);
+    -webkit-border-bottom-right-radius: 12px;
+    -webkit-border-bottom-left-radius: 12px;
+    -moz-border-radius-bottomright: 12px;
+    -moz-border-radius-bottomleft: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    &:hover {
+      background: lighten($green, 10%);
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.container {
+  width: 480px;
+  margin: 10px auto;
+  padding: 30px;
+  padding-bottom: 0;
+  background: $white;
+  @include border-radius(12px);
+  @include clearfix();
+}
+
+.card {
+  margin: 20px 0;
+  background: #ddd;
+  padding: 10px;
+  @include clearfix();
+  
+  img {
+    width: 60px;
+    height: auto;
+    float: left;
+  }
+  .title {
+    margin-left: 80px;
+  }
+}
+
+.record-area {
+  position: relative;
+  text-align: center;
+
+  button {
+    display: block;
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -100px;
+    margin-top: -36px;
+    background: $gray;
+    &:hover {
+      background: lighten($gray, 10%);
+    }
+    &:before {
+      content: 'Record';
+    }
+  }
+
+  canvas {
+    opacity: 0.2;
+  }
+
+  &.active {
+    button {
+      background: $secondary;
+      &:hover {
+        background: lighten($secondary, 10%);
+      }
+      &:before {
+        content: 'Recording...';
+      }
+    }
+    canvas {
+      opacity: 1;
+    }
+  }
+}
+
+.recordings {
+  list-style: none;
+  margin: 20px 0 0 0;
+  padding: 0;
+
+  li {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    @include clearfix();
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  canvas {
+    width: 100%;
+    float: left;
+    height: 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  .buttons {
+    button {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .play {
+      background: $green;
+      &:hover {
+        background: lighten($green, 10%);
+      }
+      &:before {
+        content: 'Play';
+      }
+      &.active:before {
+        content: 'Playing...'
+      }
+    }
+  }
+}
