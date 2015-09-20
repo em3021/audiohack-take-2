@@ -108,6 +108,23 @@
       $('#recordings').on('click', '.reset', function(e){
         e.preventDefault();
         $('#recordings').empty();
+        $('.submit').addClass('hide');
+      });
+
+      $('input[name="url"]').on('blur', function(){
+        _this.lookupURL($(this).val());
+      });
+    };
+
+    App.prototype.lookupURL = function(url){
+      $.getJSONP("http://knomad.parseapp.com/episodeLookUp", {link: url}, function(data) {
+        var $el = $('<div class="card"><img src="'+data.showImageUrl+'" /><div class="title">'+data.episodeTitle+'</div></div>');
+        $('#preview').append($el);
+        // episodeAudioVideoUrl: "http://www.podtrac.com/pts/redirect.mp3/traffic.libsyn.com/nerdist/Nerdist_725_-_Sir_Patrick_Stewart_Returns.mp3",
+        // episodeTitle: "Sir Patrick Stewart Returns",
+        // showImageUrl: "http://is1.mzstatic.com/image/thumb/Podcasts3/v4/63/cf/5a/63cf5afb-2dae-c24e-6a80-ad2db7b46568/mza_2280581886263906275.jpg/600x600bb-85.jpg",
+        // showTitle: "Nerdist",
+        // showUrl: "http://nerdist.com"
       });
     };
 
@@ -129,6 +146,8 @@
 
     App.prototype.recordStop = function() {
       var _this = this;
+
+      $('.submit').removeClass('hide');
 
       this.audioRecorder.stop();
       this.audioRecorder.exportWAV(function(blob){
